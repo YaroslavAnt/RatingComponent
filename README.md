@@ -1,0 +1,2 @@
+# RatingComponent
+Created with CodeSandbox
