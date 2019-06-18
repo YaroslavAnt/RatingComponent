@@ -2,16 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "./styles.css";
-import Star from "./Star/Star";
 import Rating from "./Star/Rating";
 
-function App() {
+const App = () => {
+  const clickHandler = progress => {
+    console.log(progress);
+  };
+
   return (
     <div className="App">
-      <Rating rating={26} />
+      <Rating rating={26} clickHandler={clickHandler} />
     </div>
   );
-}
+};
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);

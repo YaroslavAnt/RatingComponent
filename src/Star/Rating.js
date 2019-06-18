@@ -18,6 +18,9 @@ const Rating = props => {
 
   const onClick = e => {
     const rating = document.getElementById("rating");
+    props.clickHandler(
+      Math.round(((e.clientX - rating.offsetLeft) * 100) / rating.offsetWidth)
+    );
     return setClickValue(
       Math.round(((e.clientX - rating.offsetLeft) * 100) / rating.offsetWidth)
     );
