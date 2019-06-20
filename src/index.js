@@ -51,4 +51,4 @@ const App = ({ size }) => {
 };
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App size={100} />, rootElement);
+ReactDOM.render(<App size={50} />, rootElement);
