@@ -3,8 +3,15 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 import Rating from "./Rating/Rating";
+import * as DefaultElement from "./Rating/DefaultElement";
 
-const App = ({ size }) => {
+const App = ({
+  itemSize,
+  CustomElementEmpty,
+  CustomElementHalfy,
+  CustomElementFully,
+  ratingSize
+}) => {
   const clickHandler = progress => {
     console.log(progress);
   };
@@ -12,43 +19,34 @@ const App = ({ size }) => {
   return (
     <div className="App">
       <Rating
-        rating={26}
         clickHandler={clickHandler}
-        ratingSize={7}
-        ComponentEmpty={() => (
-          <div
-            className="rating__element rating__star"
-            style={{
-              backgroundPositionX: "50%",
-              width: size,
-              height: size
-            }}
-          />
-        )}
-        ComponentHalfy={() => (
-          <div
-            className="rating__element rating__star"
-            style={{
-              backgroundPositionX: "25%",
-              width: size,
-              height: size
-            }}
-          />
-        )}
-        ComponentFully={() => (
-          <div
-            className="rating__element rating__star"
-            style={{
-              backgroundPositionX: "0%",
-              width: size,
-              height: size
-            }}
-          />
-        )}
+        itemSize={itemSize}
+        ratingSize={ratingSize}
+        ComponentEmpty={() =>
+          CustomElementEmpty ? (
+            <CustomElementEmpty itemSize={itemSize} />
+          ) : (
+            <DefaultElement.empty itemSize={itemSize} />
+          )
+        }
+        ComponentHalfy={() =>
+          CustomElementHalfy ? (
+            <CustomElementHalfy itemSize={itemSize} />
+          ) : (
+            <DefaultElement.halfy itemSize={itemSize} />
+          )
+        }
+        ComponentFully={() =>
+          CustomElementFully ? (
+            <CustomElementFully itemSize={itemSize} />
+          ) : (
+            <DefaultElement.fully itemSize={itemSize} />
+          )
+        }
       />
     </div>
   );
 };
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App size={50} />, rootElement);
+ReactDOM.render(<App itemSize={100} ratingSize={5} />, rootElement);
