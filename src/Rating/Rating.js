@@ -3,14 +3,15 @@ import React, { useState } from "react";
 const Rating = ({
   clickHandler,
   ratingSize,
+  externalValue,
   ComponentEmpty,
   ComponentHalfy,
   ComponentFully
 }) => {
-  const [IDX, setIDX] = useState("");
+  const [IDX, setIDX] = useState(parseInt(externalValue, 10));
   const [clickedIDX, setClickedIDX] = useState("");
 
-  const [subIDX, setSubIDX] = useState("");
+  const [subIDX, setSubIDX] = useState(externalValue % 1);
   const [clickedSubIDX, setClickedSubIDX] = useState("");
 
   const onMouseOver = (e, idx, subIDX) => {
@@ -39,8 +40,9 @@ const Rating = ({
             }
 
             if (idx === IDX) {
-              if (subIDX === 0.5) ratingElement = <ComponentHalfy />;
-              if (subIDX === 1) ratingElement = <ComponentFully />;
+              if (subIDX <= 0.5) ratingElement = <ComponentHalfy />;
+              if (subIDX <= 1 && subIDX > 0.5)
+                ratingElement = <ComponentFully />;
             }
 
             return (

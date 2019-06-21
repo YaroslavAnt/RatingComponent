@@ -7,10 +7,11 @@ import * as DefaultElement from "./Rating/DefaultElement";
 
 const App = ({
   itemSize,
+  ratingSize,
+  externalValue,
   CustomElementEmpty,
   CustomElementHalfy,
-  CustomElementFully,
-  ratingSize
+  CustomElementFully
 }) => {
   const clickHandler = progress => {
     console.log(progress);
@@ -22,6 +23,7 @@ const App = ({
         clickHandler={clickHandler}
         itemSize={itemSize}
         ratingSize={ratingSize}
+        externalValue={externalValue}
         ComponentEmpty={() =>
           CustomElementEmpty ? (
             <CustomElementEmpty itemSize={itemSize} />
@@ -49,4 +51,7 @@ const App = ({
 };
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App itemSize={100} ratingSize={5} />, rootElement);
+ReactDOM.render(
+  <App itemSize={100} ratingSize={5} externalValue={2.3} />,
+  rootElement
+);
