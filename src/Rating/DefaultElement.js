@@ -1,6 +1,6 @@
 import React from "react";
 
-export const empty = ({ itemSize }) => (
+export const empty = () => (
   <div
     className="rating__element rating__star"
     style={{
@@ -11,7 +11,7 @@ export const empty = ({ itemSize }) => (
   />
 );
 
-export const halfy = ({ itemSize }) => (
+export const halfy = () => (
   <div
     className="rating__element rating__star"
     style={{
@@ -22,7 +22,7 @@ export const halfy = ({ itemSize }) => (
   />
 );
 
-export const fully = ({ itemSize }) => (
+export const fully = () => (
   <div
     className="rating__element rating__star"
     style={{

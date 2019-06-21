@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import * as DefaultElement from "./DefaultElement";
+import RatingItem from "./RatingItem";
+
 const Rating = ({
   itemSize,
   clickHandler,
@@ -9,6 +12,22 @@ const Rating = ({
   ComponentHalfy,
   ComponentFully
 }) => {
+  externalValue >= ratingSize &&
+    console.log("Warning: ratingSize should be greater than externalValue ");
+
+  if (
+    !(
+      !!ComponentEmpty === !!ComponentHalfy &&
+      !!ComponentHalfy === !!ComponentFully
+    )
+  ) {
+    console.log("warning: use either all custom elements or default elements");
+  }
+
+  if (!ComponentEmpty) ComponentEmpty = () => <DefaultElement.empty />;
+  if (!ComponentHalfy) ComponentHalfy = () => <DefaultElement.halfy />;
+  if (!ComponentFully) ComponentFully = () => <DefaultElement.fully />;
+
   const [IDX, setIDX] = useState(parseInt(externalValue, 10));
   const [clickedIDX, setClickedIDX] = useState("");
 
@@ -39,56 +58,30 @@ const Rating = ({
         {Array(ratingSize)
           .fill(null)
           .map((star, idx) => {
-            let ratingElement = <ComponentEmpty />;
-
-            if (idx < IDX) {
-              ratingElement = <ComponentFully />;
-            }
-
-            if (idx === IDX) {
-              if (subIDX <= 0.5) ratingElement = <ComponentHalfy />;
-              if (subIDX <= 1 && subIDX > 0.5)
-                ratingElement = <ComponentFully />;
-            }
-
             return (
-              <div
+              <RatingItem
                 key={idx}
-                style={{
-                  position: "relative",
-                  width: itemSize,
-                  height: itemSize
-                }}
-              >
-                {ratingElement}
-                <div
-                  style={{
-                    display: "flex",
-                    position: "absolute",
-                    top: 0,
-                    width: "100%",
-                    height: "100%"
-                  }}
-                >
-                  <div
-                    style={{ flex: 1 }}
-                    onMouseOver={e => onMouseOver(e, idx, 0.5)}
-                    onMouseLeave={onMouseLeave}
-                    onClick={e => onClick(e, idx, 0.5)}
-                  />
-                  <div
-                    style={{ flex: 1 }}
-                    onMouseOver={e => onMouseOver(e, idx, 1)}
-                    onMouseLeave={onMouseLeave}
-                    onClick={e => onClick(e, idx, 1)}
-                  />
-                </div>
-              </div>
+                itemSize={itemSize}
+                ComponentEmpty={ComponentEmpty}
+                ComponentFully={ComponentFully}
+                ComponentHalfy={ComponentHalfy}
+                onMouseOver={onMouseOver}
+                onMouseLeave={onMouseLeave}
+                onClick={onClick}
+                idx={idx}
+                currentIDX={IDX}
+                subIDX={subIDX}
+              />
             );
           })}
       </div>
     </div>
   );
+};
+
+Rating.defaultProps = {
+  itemSize: 100,
+  ratingSize: 5
 };
 
 export default Rating;
