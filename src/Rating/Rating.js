@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import RatingElement from "./RatingElement";
+import React, { useState } from "react";
 
 const Rating = ({
   clickHandler,
@@ -24,6 +23,7 @@ const Rating = ({
     setClickedIDX(idx);
     setSubIDX(subIDX);
     setClickedSubIDX(subIDX);
+    clickHandler(idx + subIDX);
   };
 
   return (
@@ -39,7 +39,7 @@ const Rating = ({
             }
 
             if (idx === IDX) {
-              if (subIDX === 0) ratingElement = <ComponentHalfy />;
+              if (subIDX === 0.5) ratingElement = <ComponentHalfy />;
               if (subIDX === 1) ratingElement = <ComponentFully />;
             }
 
@@ -57,12 +57,12 @@ const Rating = ({
                 >
                   <div
                     style={{ flex: 1 }}
-                    onMouseOver={e => onMouseOver(e, idx, 0)}
+                    onMouseOver={e => onMouseOver(e, idx, 0.5)}
                     onMouseLeave={() => {
                       setIDX(clickedIDX);
                       setSubIDX(clickedSubIDX);
                     }}
-                    onClick={e => onClick(e, idx, 0)}
+                    onClick={e => onClick(e, idx, 0.5)}
                   />
                   <div
                     style={{ flex: 1 }}
