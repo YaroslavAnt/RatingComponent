@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const Rating = ({
+  itemSize,
   clickHandler,
   ratingSize,
   externalValue,
@@ -17,6 +18,11 @@ const Rating = ({
   const onMouseOver = (e, idx, subIDX) => {
     setIDX(idx);
     setSubIDX(subIDX);
+  };
+
+  const onMouseLeave = () => {
+    setIDX(clickedIDX);
+    setSubIDX(clickedSubIDX);
   };
 
   const onClick = (e, idx, subIDX) => {
@@ -46,7 +52,14 @@ const Rating = ({
             }
 
             return (
-              <div key={idx} style={{ position: "relative" }}>
+              <div
+                key={idx}
+                style={{
+                  position: "relative",
+                  width: itemSize,
+                  height: itemSize
+                }}
+              >
                 {ratingElement}
                 <div
                   style={{
@@ -60,19 +73,13 @@ const Rating = ({
                   <div
                     style={{ flex: 1 }}
                     onMouseOver={e => onMouseOver(e, idx, 0.5)}
-                    onMouseLeave={() => {
-                      setIDX(clickedIDX);
-                      setSubIDX(clickedSubIDX);
-                    }}
+                    onMouseLeave={onMouseLeave}
                     onClick={e => onClick(e, idx, 0.5)}
                   />
                   <div
                     style={{ flex: 1 }}
                     onMouseOver={e => onMouseOver(e, idx, 1)}
-                    onMouseLeave={() => {
-                      setIDX(clickedIDX);
-                      setSubIDX(clickedSubIDX);
-                    }}
+                    onMouseLeave={onMouseLeave}
                     onClick={e => onClick(e, idx, 1)}
                   />
                 </div>

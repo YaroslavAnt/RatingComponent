@@ -25,25 +25,13 @@ const App = ({
         ratingSize={ratingSize}
         externalValue={externalValue}
         ComponentEmpty={() =>
-          CustomElementEmpty ? (
-            <CustomElementEmpty itemSize={itemSize} />
-          ) : (
-            <DefaultElement.empty itemSize={itemSize} />
-          )
+          CustomElementEmpty ? <CustomElementEmpty /> : <DefaultElement.empty />
         }
         ComponentHalfy={() =>
-          CustomElementHalfy ? (
-            <CustomElementHalfy itemSize={itemSize} />
-          ) : (
-            <DefaultElement.halfy itemSize={itemSize} />
-          )
+          CustomElementHalfy ? <CustomElementHalfy /> : <DefaultElement.halfy />
         }
         ComponentFully={() =>
-          CustomElementFully ? (
-            <CustomElementFully itemSize={itemSize} />
-          ) : (
-            <DefaultElement.fully itemSize={itemSize} />
-          )
+          CustomElementFully ? <CustomElementFully /> : <DefaultElement.fully />
         }
       />
     </div>

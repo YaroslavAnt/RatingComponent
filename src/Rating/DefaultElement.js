@@ -5,8 +5,8 @@ export const empty = ({ itemSize }) => (
     className="rating__element rating__star"
     style={{
       backgroundPositionX: "50%",
-      width: itemSize,
-      height: itemSize
+      width: "100%",
+      height: "100%"
     }}
   />
 );
@@ -16,8 +16,8 @@ export const halfy = ({ itemSize }) => (
     className="rating__element rating__star"
     style={{
       backgroundPositionX: "25%",
-      width: itemSize,
-      height: itemSize
+      width: "100%",
+      height: "100%"
     }}
   />
 );
@@ -27,8 +27,8 @@ export const fully = ({ itemSize }) => (
     className="rating__element rating__star"
     style={{
       backgroundPositionX: "0%",
-      width: itemSize,
-      height: itemSize
+      width: "100%",
+      height: "100%"
     }}
   />
 );
